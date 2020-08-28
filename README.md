@@ -2,7 +2,7 @@
 
 Use the [Joke API](https://github.com/15Dkatz/official_joke_api) to dynamically add a fresh dad joke to the DOM.
 
-Try it out by going to this URL and looking at the JSON object that gets returned
+Try testing this API in Postman. Make a GET request to the following URL and look at the JSON object that gets returned
 
 https://official-joke-api.appspot.com/jokes/random
 
