@@ -5,15 +5,34 @@ let joke;
 // 2. define and export a getJoke function that fetches a joke from the API and sets the joke variable to the response
 
 export const useJoke = () => {
-    return joke;
-}
-
-export const getJoke = () =>{
-    return fetch('https://official-joke-api.appspot.com/jokes/random')
-    .then(response => response.json())
-    .then(response => joke = response);
+    return joke[Math.floor(Math.random()*joke.length)];
 };
 
 
+export const getJoke = async(type) =>{
+    let response;
+    let data;
+    if (type === "default") {
+        response = await fetch('https://official-joke-api.appspot.com/jokes/ten')
+        data = await response.json();
+        joke = data;
+};
+    if (type === "programming") {
+        response = await fetch('https://official-joke-api.appspot.com/jokes/programming/ten')
+        data = await response.json();
+        joke = data;
+};
+    if (type === "knock-knock") {
+        response = await fetch('https://official-joke-api.appspot.com/jokes/knock-knock/ten')
+        data = await response.json();
+        joke = data;
+};
+    if (type === "general") {
+        response = await fetch('https://official-joke-api.appspot.com/jokes/general/ten')
+        data = await response.json();
+        joke = data;
+};
+    return joke;
+};
 
 
