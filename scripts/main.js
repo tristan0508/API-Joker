@@ -5,28 +5,36 @@ const punchBtn = document.querySelector(".request-punch-btn");
 const jokeBtn = document.querySelector(".request-joke-btn");
 const jokeSetup = document.querySelector(".joke-setup");
 const jokePunch = document.querySelector(".joke-punchline");
+const jokeType = document.querySelector("#jokeOptions");
 
+let joke;
+jokeType.addEventListener("click", (jokeType) => {
+  if (jokeType.target.value === "default") {
+    joke = getJoke("default")
 
+  }
+  if (jokeType.target.value === "programming") {
+    joke = getJoke("programming")
 
-let joke = "";
+  }
+  if (jokeType.target.value === "knock-knock") {
+    joke = getJoke("knock-knock")
 
-jokeBtn.addEventListener("click", (e) => {
-  getJoke().then(() => {
-    joke = useJoke()
-    jokeSetup.innerHTML = `Setup: ${Joke(joke.setup)}`;
-  })
+  }
+  if (jokeType.target.value === "general") {
+    joke = getJoke("general")
 
+  }
+  return joke;
 
-
-punchBtn.addEventListener("click", (e) => {
-  // getJoke().then(() => {
-    joke = useJoke()
-    jokePunch.innerHTML = `Punch: ${Joke(joke.punchline)}`;
-  })
 });
 
+jokeBtn.addEventListener("click", () => {
+    let jokeFunc = useJoke()
+    jokeSetup.innerHTML = `Setup: ${Joke(jokeFunc.setup)}`;
+    jokePunch.innerHTML = "";
 
-
-
-
-// TODO: fetch a joke from the Joke API and render it to the DOM
+punchBtn.addEventListener("click", () => {
+    jokePunch.innerHTML = `Punch: ${Joke(jokeFunc.punchline)}`;
+    });
+});
